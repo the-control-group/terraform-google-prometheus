@@ -1,0 +1,28 @@
+# Contributing
+
+## Reporting a bug
+Use GitHub issues to report a bug or an error that you are experiencing. A good report will include:
+
+1) A description of the issue
+2) Steps to reproduce
+3) What was expected to happen
+4) What actually happened
+5) Any additional details
+
+## Requesting a new feature
+Feature requests are best submitted through GitHub issues. We will do our best to review these
+and integrate them if we feel they fit with the goals of the project and our own organization's
+needs.
+
+## Submitting a fix / feature
+Please make sure to follow the [Github Flow](https://guides.github.com/introduction/flow/index.html) when
+making contributions.
+
+Also, be as detailed as possible when submitting your pull request. Including things like links
+to an existing GitHub issue or an explanation as to the problem that the pull request is attempting
+to fix are strongly encouraged.
+
+As with new feature requests, we will be evaluating PRs against the goals of the project and our own
+organization's needs.
+
+Finally, all code that you contribute will be released under the MIT license.
