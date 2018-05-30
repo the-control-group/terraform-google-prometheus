@@ -27,24 +27,25 @@ resource "google_compute_instance" "prometheus-server" {
     }
 }
 
-module "prometheus-server-fw-9090" {
-    source = "git@github.com:the-control-group/terraform-modules.git//gcp/network/firewall-allow-1"
+resource "google_compute_firewall" "prometheus-server-fw-9090" {
     name = "${var.deployment_name}-server-9090"
-    project = "${var.gcp_project}"
     network = "${var.gcp_network}"
-    protocol = "tcp"
-    ports = ["9090"]
+    allow {
+        protocol = "tcp"
+        ports = ["9090"]
+    }
     source_ranges = "${var.server_source_ranges}"
     source_tags = "${var.server_source_tags}"
 }
 
-module "prometheus-node-exporter-fw-9100" {
-    source = "git@github.com:the-control-group/terraform-modules.git//gcp/network/firewall-allow-1"
+resource "google_compute_firewall" "prometheu-node-exporter-fw-9100" {
     name = "${var.deployment_name}-node-exporter-9100"
     project = "${var.gcp_project}"
     network = "${var.gcp_network}"
-    protocol = "tcp"
-    ports = ["9100"]
+    allow {
+        protocol = "tcp"
+        ports = ["9100"]
+    }
     source_ranges = "${var.node_exporter_ranges}"
     source_tags = "${var.node_exporter_tags}"
 }
