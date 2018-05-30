@@ -6,7 +6,6 @@ traffic to the Prometheus service and the other configures a rule allowing commu
 the Prometheus server to instances running [node exporter](https://github.com/prometheus/node_exporter).
 
 ## To Do
-- [ ] Make firewall module publicly available or use another, already publicly available, firewall module.
 - [ ] Determine and provide useful outputs.
 - [ ] Provide example Packer build file for Prometheus image.
 
