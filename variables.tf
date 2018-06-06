@@ -25,6 +25,17 @@ variable "disk_image" {
 }
 
 /// Optional
+variable "shared_vpc" {
+  description = "Whether or not Prometheus will be deployed onto a shared vpc."
+  default     = "false"
+}
+
+variable "host_project" {
+  description = "Host project ID if using a shared vpc."
+  type        = "string"
+  default     = ""
+}
+
 variable "deployment_name" {
   description = "Name to identify the prometheus deployement."
   type        = "string"

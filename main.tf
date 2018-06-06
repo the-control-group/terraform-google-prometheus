@@ -28,6 +28,7 @@ resource "google_compute_instance" "prometheus-server" {
 }
 
 resource "google_compute_firewall" "prometheus-server-fw-9090" {
+  count   = "${var.shared_vpc == 0 ? 1 : 0}"
   name    = "${var.deployment_name}-server-9090"
   network = "${var.gcp_network}"
 
@@ -40,10 +41,42 @@ resource "google_compute_firewall" "prometheus-server-fw-9090" {
   source_tags   = "${var.server_source_tags}"
 }
 
-resource "google_compute_firewall" "prometheu-node-exporter-fw-9100" {
+resource "google_compute_firewall" "prometheus-node-exporter-fw-9100" {
+  count   = "${var.shared_vpc == 0 ? 1 : 0}"
   name    = "${var.deployment_name}-node-exporter-9100"
   project = "${var.gcp_project}"
   network = "${var.gcp_network}"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["9100"]
+  }
+
+  source_ranges = "${var.node_exporter_ranges}"
+  source_tags   = "${var.node_exporter_tags}"
+}
+
+resource "google_compute_firewall" "prometheus-server-fw-9090" {
+  count   = "${var.shared_vpc == 1 ? 1 : 0}"
+  name    = "${var.deployment_name}-server-9090"
+  network = "${var.gcp_network}"
+  project = "${var.host_project}"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["9090"]
+  }
+
+  source_ranges = "${var.server_source_ranges}"
+  source_tags   = "${var.server_source_tags}"
+}
+
+resource "google_compute_firewall" "prometheus-node-exporter-fw-9100" {
+  count   = "${var.shared_vpc == 1 ? 1 : 0}"
+  name    = "${var.deployment_name}-node-exporter-9100"
+  project = "${var.gcp_project}"
+  network = "${var.gcp_network}"
+  project = "${var.host_project}"
 
   allow {
     protocol = "tcp"

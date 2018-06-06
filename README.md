@@ -33,6 +33,7 @@ module "prometheus-deployment" {
 | gcp_project | The project that prometheus will be deployed to. | string | - | yes |
 | gcp_subnetwork | Subnetwork to attach the instance to. | string | - | yes |
 | gcp_zone | The host zone where prometheus will be deployed to. | string | - | yes |
+| host_project | Host project ID if using a shared vpc. | string | `` | no |
 | machine_type | Instance size to deploy prometheus on to. | string | `g1-small` | no |
 | node_exporter_ranges | The source ranges allowed to access to communicate with the node exporter. | list | `<list>` | no |
 | node_exporter_tags | The source tags allowed to access to communicate with the node exporter. | list | `<list>` | no |
@@ -40,3 +41,4 @@ module "prometheus-deployment" {
 | server_source_ranges | The source ranges allowed access to communicate with the prometheus server. | list | `<list>` | no |
 | server_source_tags | The source ranges allowed access to communicate with the prometheus server. | list | `<list>` | no |
 | server_tags | Network tags to identify the server. | list | `<list>` | no |
+| shared_vpc | Whether or not Prometheus will be deployed onto a shared vpc. | string | `false` | no |
