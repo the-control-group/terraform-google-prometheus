@@ -56,7 +56,7 @@ resource "google_compute_firewall" "prometheus-node-exporter-fw-9100" {
   source_tags   = "${var.node_exporter_tags}"
 }
 
-resource "google_compute_firewall" "prometheus-server-fw-9090" {
+resource "google_compute_firewall" "svpc-prometheus-server-fw-9090" {
   count   = "${var.shared_vpc == 1 ? 1 : 0}"
   name    = "${var.deployment_name}-server-9090"
   network = "${var.gcp_network}"
@@ -71,7 +71,7 @@ resource "google_compute_firewall" "prometheus-server-fw-9090" {
   source_tags   = "${var.server_source_tags}"
 }
 
-resource "google_compute_firewall" "prometheus-node-exporter-fw-9100" {
+resource "google_compute_firewall" "svpc-prometheus-node-exporter-fw-9100" {
   count   = "${var.shared_vpc == 1 ? 1 : 0}"
   name    = "${var.deployment_name}-node-exporter-9100"
   project = "${var.gcp_project}"
