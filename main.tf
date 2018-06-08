@@ -25,6 +25,8 @@ resource "google_compute_instance" "prometheus-server" {
   service_account {
     scopes = "${var.server_scopes}"
   }
+
+  depends_on = ["google_compute_disk.prometheus-disk"]
 }
 
 resource "google_compute_firewall" "prometheus-server-fw-9090" {
